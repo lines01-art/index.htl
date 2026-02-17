@@ -432,17 +432,23 @@
     setupOptions(correctAnswer);
 } 
 
-        function generateTicks() {
-            let h = '';
-            for(let i=0; i<=150; i++) {
-                let cl = 'tick-mm';
-                if(i % 10 === 0) cl = 'tick-cm';
-                else if(i % 5 === 0) cl = 'tick-half';
-                h += `<div class="tick ${cl}" style="left:${i*3}px"></div>`;
-                if(i % 10 === 0) h += `<div class="absolute text-[10px] font-bold" style="left:${i*3-4}px;bottom:45px">${i/10}</div>`;
-            }
-            return h;
+function generateTicks() {
+    let h = '';
+    for(let i=0; i<=150; i++) {
+        let cl = 'tick-mm'; // 1mmごとの線
+        if(i % 10 === 0) cl = 'tick-cm'; // 1cmごとの長い線
+        else if(i % 5 === 0) cl = 'tick-half'; // 0.5cmごとの中くらいの線
+        
+        // 線の位置と見た目を決める
+        h += `<div class="tick ${cl}" style="left:${i*3}px; position:absolute; bottom:0; background-color:#333; width:1px;"></div>`;
+        
+        // cmの数字を書く
+        if(i % 10 === 0) {
+            h += `<div class="absolute text-[12px] font-bold text-gray-800" style="left:${i*3-4}px; bottom:45px">${i/10}</div>`;
         }
+    }
+    return h;
+}
 
         function setupOptions(correct) {
             let opts = [correct];
