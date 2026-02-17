@@ -403,19 +403,19 @@
             setupOptions(correctAnswer);
         }
 
-     function generateMeasure() {
+function generateMeasure() {
     const lengthCm = (Math.floor(Math.random() * 120) + 10) / 10;
     const pxWidth = lengthCm * 30;
     elements.qContainer.innerHTML = `
         <div class="bg-purple-50 px-4 py-1 rounded-full text-purple-600 font-bold text-sm mb-4">🔍 ものさしクイズ</div>
         <div class="text-xl font-bold mb-4 text-purple-700">この青い棒（ぼう）の ながさは？</div>
         
-        <div class="relative w-full mb-8 bg-gray-50 rounded-xl p-4 flex flex-col items-start overflow-x-auto">
-            <div class="relative h-8 mb-2 flex items-center">
-                <div id="bar" class="bg-gradient-to-r from-blue-400 to-blue-600 h-6 rounded-full shadow-sm" style="width:0; transition:width 0.8s ease-out;"></div>
+        <div class="w-full bg-gray-50 rounded-xl p-4 flex flex-col items-start overflow-x-auto border border-gray-200 shadow-inner">
+            <div class="relative h-10 mb-1 flex items-center" style="padding-left: 4px;">
+                <div id="bar" class="bg-gradient-to-r from-blue-500 to-blue-700 h-6 rounded-none shadow-sm border-r-2 border-blue-900" style="width:0; transition:width 0.8s ease-out;"></div>
             </div>
             
-            <div class="ruler rounded-lg border-2 border-yellow-400 shadow-inner min-w-[460px] w-full" style="height: 80px;">
+            <div class="ruler rounded-lg border-2 border-yellow-400 relative" style="height: 100px; min-width: 480px; background: linear-gradient(to bottom, #fffde7 0%, #fff9c4 100%);">
                 ${generateTicks()}
             </div>
         </div>
@@ -428,9 +428,9 @@
     const cm = Math.floor(lengthCm);
     const mm = Math.round((lengthCm - cm) * 10);
     correctAnswer = (mm === 0) ? `${cm}cm` : `${cm}cm ${mm}mm`;
-    currentExplanation = "ものさしの 太い線が cm、小さい線が mm だよ。めもりを よく見てみよう！";
+    currentExplanation = "棒の右はしが、ものさしの どの目盛りにあるか見てみてね！";
     setupOptions(correctAnswer);
-} 
+}
 
 function generateTicks() {
     let h = '';
